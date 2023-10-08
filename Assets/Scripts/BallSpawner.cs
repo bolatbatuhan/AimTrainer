@@ -7,24 +7,29 @@ public class BallSpawner : MonoBehaviour
     public GameObject[] ballPrefab;
     float spawnRangeX = 4.0f;
     float spawnPosZ = 8.0f;
-    float spawnPozY = 4.0f;
-    float spawnPozY2=2.0f;
+
+    float spawnRangeYUp = 4.0f;
+    float spawnRangeYLower = 2.0f;
+
     float startDelay = 1.5f;
-    float spawnInterval = 2.0f;
-    void Start()
+    float spawnInterval = 1.0f;
+
+    float ballLifeTime = 0.5f;
+
+
+    private void Start()
     {
-        InvokeRepeating("SpawnRandomBall", startDelay, spawnInterval);
+        InvokeRepeating("randomBallSpawner", startDelay, spawnInterval);
     }
 
-    
-    void Update()
+    private void randomBallSpawner()
     {
-         
-    }
-    void SpawnRandomBall()
-    {
-        Vector3 spawnPos = new Vector3(UnityEngine.Random.Range(-spawnRangeX, spawnRangeX),UnityEngine.Random.Range(spawnPozY2,spawnPozY), spawnPosZ);
+        Vector3 spawnPos = new Vector3(UnityEngine.Random.Range(-spawnRangeX, spawnRangeX), UnityEngine.Random.Range(spawnRangeYLower, spawnRangeYUp), spawnPosZ);
         int ballIndex = UnityEngine.Random.Range(0, ballPrefab.Length);
-        Instantiate(ballPrefab[ballIndex], spawnPos, ballPrefab[ballIndex].transform.rotation);
+        GameObject newBall = Instantiate(ballPrefab[ballIndex], spawnPos, ballPrefab[ballIndex].transform.rotation);
+
+        Destroy(newBall, ballLifeTime);
+
     }
 }
+

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float sensitivity = 2.0f; // Fare hassasiyeti
-    public float maxYRotation = 80.0f; // Y ekseninde maksimum dönme açısı
-    private float rotationX = 0;
+    public float sensitivity = 1.0f;
+    private float rotationY = 80f;
+    private Vector2 turn;
 
     void Start()
     {
-
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
 
@@ -20,15 +20,12 @@ public class PlayerController : MonoBehaviour
     }
     void PlayerMovement()
     {
-        float mouseX = Input.GetAxis("Mouse X");
-        float mouseY = Input.GetAxis("Mouse Y");
+        turn.x += Input.GetAxis("Mouse X") * sensitivity;
+        turn.y += Input.GetAxis("Mouse Y") * sensitivity;
+        transform.localRotation = Quaternion.Euler(-turn.y, turn.x, 0);
 
-        // Yatay (X ekseni) dönme için karakterin rotasyonunu güncelle
-        transform.Rotate(Vector3.up * mouseX * sensitivity);
+        turn.y = Mathf.Clamp(turn.y, -rotationY, rotationY);
 
-        // Dikey (Y ekseni) dönme için karakterin rotasyonunu güncelle
-        rotationX -= mouseY * sensitivity;
-        rotationX = Mathf.Clamp(rotationX, -maxYRotation, maxYRotation);
-        Camera.main.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+
     }
 }
