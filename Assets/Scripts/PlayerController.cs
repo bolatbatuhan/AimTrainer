@@ -4,28 +4,25 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float sensitivity = 1.0f;
-    private float rotationY = 80f;
-    private Vector2 turn;
-
-    void Start()
+    public float sensivity = 1.5f;
+    private float rotationY = 80.0f;
+    Vector2 turn;
+    private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState  = CursorLockMode.Locked;
+        transform.localRotation = Quaternion.Euler(0,5,0);
     }
 
-
-    void Update()
+    private void Update()
     {
         PlayerMovement();
     }
-    void PlayerMovement()
+
+    private void PlayerMovement()
     {
-        turn.x += Input.GetAxis("Mouse X") * sensitivity;
-        turn.y += Input.GetAxis("Mouse Y") * sensitivity;
-        transform.localRotation = Quaternion.Euler(-turn.y, turn.x, 0);
-
-        turn.y = Mathf.Clamp(turn.y, -rotationY, rotationY);
-
-
+        turn.x += Input.GetAxisRaw("Mouse X") * sensivity;
+        turn.y += Input.GetAxisRaw("Mouse Y") * sensivity;
+        turn.y = Mathf.Clamp(turn.y,-rotationY,rotationY);
+        transform.localRotation = Quaternion.Euler(-turn.y,turn.x,0);
     }
 }
