@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -14.43, y: 2.3196483, z: 2.46}
-  m_LocalScale: {x: 0.67235, y: 0.67235, z: 0.67235}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1811109115631023960}
@@ -141,7 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdc9d052b185ae04aadcbd5e54450247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score_Text: {fileID: 6038331066857779302}
 --- !u!1001 &8917093603910654677
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -204,14 +203,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7106041697668705677, guid: 222bc9ab7a8629b43b75fbad26f13df5, type: 3}
   m_PrefabInstance: {fileID: 8917093603910654677}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6038331066857779302 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2914839958613387955, guid: 222bc9ab7a8629b43b75fbad26f13df5, type: 3}
-  m_PrefabInstance: {fileID: 8917093603910654677}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

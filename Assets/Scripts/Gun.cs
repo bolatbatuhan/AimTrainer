@@ -10,13 +10,21 @@ public class Gun : MonoBehaviour
 
     public Camera fpsCam;
     public ParticleSystem muzzleFlash;
-    
+    private Animator anim;
+
+    private void Start()
+    {
+        anim = gameObject.GetComponent<Animator>();
+    }
     void Update()
     {
-        if(Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1"))
         {
             Shoot();
+            
+
         }
+        anim.SetBool("fire_idle",false);
     }
 
     void Shoot()
@@ -24,15 +32,15 @@ public class Gun : MonoBehaviour
         muzzleFlash.Play();
 
         RaycastHit hit;
-        if(Physics.Raycast(fpsCam.transform.position,fpsCam.transform.forward,out hit, range))
+        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
-            
 
-           Target target =  hit.transform.GetComponent<Target>();
-           if(target != null)
-           {
-            target.TakeDamage(damage);
-           }
+            anim.SetTrigger("fire");
+            Target target = hit.transform.GetComponent<Target>();
+            if (target != null)
+            {
+                target.TakeDamage(damage);
+            }
         }
     }
 }
